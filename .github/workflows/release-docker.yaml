@@ -43,5 +43,5 @@ jobs:
           tags: ${{ env.REPOSITORY }}:dispatch-${{ github.run_number }}
           platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: type=registry,ref=${{ env.REPOSITORY }}:buildcache
-          cache-to: type=registry,ref=${{ env.REPOSITORY }}:buildcache,mode=max
+          cache-from: type=registry,ref=${{ env.REPOSITORY }}:0.1.0 # change to latest
+          cache-to: inline
