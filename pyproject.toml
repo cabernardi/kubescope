@@ -6,7 +6,6 @@ authors = [
     {name = "Cezar Bernardi",email = "cezar.a.bernardi@gmail.com"}
 ]
 license = {text = "=GPL-3.0-only"}
-readme = "README.md"
 requires-python = ">=3.12"
 package-mode = false
 dependencies = [
