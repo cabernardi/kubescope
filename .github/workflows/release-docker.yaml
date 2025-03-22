@@ -21,4 +21,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: hizeph/kubescope:${{ github.event.release.tag_name }}
+          tags: ghcr.io/hizeph/kubescope:${{ github.event.release.tag_name }}
