@@ -1,0 +1,32 @@
+[project]
+name = "kubescope"
+version = "0.1.0"
+description = "Peek into your Kubernetes cluster to read data from configmaps, secrets, volumes, and environment variables."
+authors = [
+    {name = "Cezar Bernardi",email = "cezar.bernardi@gmail.com"}
+]
+license = {text = "=GPL-3.0-only"}
+readme = "README.md"
+requires-python = ">=3.12"
+package-mode = false
+dependencies = [
+    "fastapi (>=0.115.11,<0.116.0)",
+    "pre-commit (>=4.2.0,<5.0.0)",
+    "uvicorn (>=0.34.0,<0.35.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+isort = "^6.0.1"
+flake8 = "^7.1.2"
+
+[tool.isort]
+profile = 'black'
+
+[tool.black]
+include = '\.pyi?$'
+line-length = 120
