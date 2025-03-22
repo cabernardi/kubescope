@@ -1,12 +1,11 @@
 [project]
 name = "kubescope"
-version = "0.1.0"
+version = "0.2.0"
 description = "Peek into your Kubernetes cluster to read data from configmaps, secrets, volumes, and environment variables."
 authors = [
     {name = "Cezar Bernardi",email = "cezar.a.bernardi@gmail.com"}
 ]
 license = {text = "=GPL-3.0-only"}
-readme = "README.md"
 requires-python = ">=3.12"
 package-mode = false
 dependencies = [

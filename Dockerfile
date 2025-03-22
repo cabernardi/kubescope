@@ -6,7 +6,7 @@ RUN useradd -ms /bin/bash kubescope -u 1001
 USER kubescope
 WORKDIR /home/kubescope
 
-COPY poetry.lock pyproject.toml README.md ./
+COPY poetry.lock pyproject.toml ./
 
 COPY --chown=kubescope ./kubescope ./kubescope
 
