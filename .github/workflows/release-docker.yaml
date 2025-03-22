@@ -18,8 +18,8 @@ jobs:
     steps:
       - name: Set variables
         run: |
-          IMAGE=${{ github.repository_owner }}/${{ env.PROJECT }}
-          REPOSITORY=${{ env.REGISTRY }}/$IMAGE"
+          IMAGE="${{ github.repository_owner }}/${{ env.PROJECT }}"
+          REPOSITORY="${{ env.REGISTRY }}/$IMAGE"
 
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
           echo "TAG_RELEASE=$REPOSITORY:${{ github.event.release.tag_name }}" >> $GITHUB_ENV
