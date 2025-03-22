@@ -41,7 +41,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           #tags: ${{ env.TAG_RELEASE }},${{ env.TAG_LATEST }
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE }}:dispatch
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE }}:dispatch-${{ github.run_number }}
           platforms: linux/amd64,linux/arm64
           push: true
           cache-from: type=registry,ref=${{ env.IMAGE }}:buildcache
