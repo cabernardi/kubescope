@@ -5,6 +5,11 @@ on:
     types: [published]
   workflow_dispatch:
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: kubescope
+  PACKAGE: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -17,13 +22,18 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Login to Github Packages registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          registry: ghcr.io
-          image: hizeph/kubescope
-          #tags: ${{ github.event.release.tag_name }}, latest
-          tags: dispatch
+          tags: ${{ env.PACKAGE }}:dispatch
           platforms: linux/amd64,linux/arm64
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          push: true
+          cache-from: type=registry,ref=hizeph/kubescope:0.1.0
+          cache-to: type=inline
