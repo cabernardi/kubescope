@@ -18,10 +18,9 @@ jobs:
     steps:
       - name: Set variables
         run: |
-          IMAGE="${{ github.repository_owner }}/${{ env.PROJECT }}"
-          REPOSITORY="${{ env.REGISTRY }}/$IMAGE"
+          REPOSITORY="${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.PROJECT }}"
 
-          echo "IMAGE=$IMAGE" >> $GITHUB_ENV
+          echo "REPOSITORY=$REPOSITORY" >> $GITHUB_ENV
           echo "TAG_RELEASE=$REPOSITORY:${{ github.event.release.tag_name }}" >> $GITHUB_ENV
           echo "TAG_LATEST=$REPOSITORY:latest" >> $GITHUB_ENV
 
@@ -41,8 +40,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           #tags: ${{ env.TAG_RELEASE }},${{ env.TAG_LATEST }
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE }}:dispatch-${{ github.run_number }}
+          tags: ${{ env.REPOSITORY }}:dispatch-${{ github.run_number }}
           platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: type=registry,ref=${{ env.IMAGE }}:buildcache
-          cache-to: type=registry,ref=${{ env.IMAGE }}:buildcache,mode=max
+          cache-from: type=registry,ref=${{ env.REPOSITORY }}:buildcache
+          cache-to: type=registry,ref=${{ env.REPOSITORY }}:buildcache,mode=max
