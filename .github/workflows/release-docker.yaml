@@ -3,7 +3,6 @@ name: Docker Package
 on:
   release:
     types: [published]
-  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
@@ -39,9 +38,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          #tags: ${{ env.TAG_RELEASE }},${{ env.TAG_LATEST }
-          tags: ${{ env.REPOSITORY }}:dispatch-${{ github.run_number }}
+          tags: ${{ env.TAG_RELEASE }},${{ env.TAG_LATEST }}
           platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: type=registry,ref=${{ env.REPOSITORY }}:0.1.0 # change to latest
-          cache-to: inline
