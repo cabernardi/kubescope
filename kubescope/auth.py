@@ -1,12 +1,10 @@
-import os
 import secrets
 from typing import Annotated
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
-USERNAME = os.environ.get("USERNAME")
-PASSWORD = os.environ.get("PASSWORD")
+from kubescope.config import PASSWORD, USERNAME
 
 if USERNAME and PASSWORD:
     security = HTTPBasic()
