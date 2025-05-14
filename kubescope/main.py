@@ -97,7 +97,7 @@ def get_txt_file(
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
 
-@app.post("/v1/db/init")
+@app.post("/v1/db/init", response_model=dict)
 def init_db_connection(auth: Annotated[bool, Depends(auth.authenticate)]):
     """Initialize the database, if it isn't"""
     try:
