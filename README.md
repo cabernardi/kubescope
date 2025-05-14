@@ -12,7 +12,12 @@ Available as a container image
 
 ## Environment Variables
 
-Key | Default | Description
---- | ---     | ---
-USERNAME | - | Set it, along with "PASSWORD", to enable Basic HTTP Authentication to all endpoints (except healthcheck)
-PASSWORD | - | Set it, along with "USERNAME", to enable Basic HTTP Authentication to all endpoints (except healthcheck)
+Key | Default | Description | Required
+--- | ---     | ---         | ---
+USERNAME       | - | Set it, along with "PASSWORD", to enable Basic HTTP Authentication to all endpoints (except healthcheck) | no
+PASSWORD       | - | Set it, along with "USERNAME", to enable Basic HTTP Authentication to all endpoints (except healthcheck) | no
+DB_HOST        | - | Postgres DB Host          | no
+DB_PORT        | 5432 | Postgres DB Port       | no
+DB_USERNAME    | - | Postgres DB Username      | no
+DB_PASSWORD    | - | Postgres DB Password      | no
+DB_NAME        | - | Postgres DB Database Name | no
