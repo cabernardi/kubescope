@@ -16,6 +16,22 @@ def health():
     return {"status": "healthy"}
 
 
+@app.get("/v1/protected", response_model=dict)
+def protected_route(auth: Annotated[bool, Depends(auth.authenticate)]):
+    """A protected route that requires authentication
+
+    Args:
+        auth (Annotated[bool, Depends): Authentication dependency
+
+    Raises:
+        HTTPException: If authentication fails
+
+    Returns:
+        dict: A message indicating the user is authenticated
+    """
+    return {"message": "You are authenticated!"}
+
+
 @app.get("/v1/env/{env}")
 def get_env(env: str, auth: Annotated[bool, Depends(auth.authenticate)]):
     """Return the value of an environment variable set in the container
