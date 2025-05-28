@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Kubescope | Kubernetes learning support tool</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Kubescope" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes learning support tool" />
+<meta property="og:description" content="Kubernetes learning support tool" />
+<link rel="canonical" href="http://localhost:4000/kubescope/" />
+<meta property="og:url" content="http://localhost:4000/kubescope/" />
+<meta property="og:site_name" content="Kubescope" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Kubescope" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"Kubernetes learning support tool","headline":"Kubescope","name":"Kubescope","url":"http://localhost:4000/kubescope/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/kubescope/assets/css/style.css?v=da33ca0fafddc7608c5f6aa2ae3bda140e757113">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/kubescope/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://localhost:4000/kubescope/">Kubescope</a></h1>
+
+
+
+        <p>Kubernetes learning support tool</p>
+
+
+        <p class="view"><a href="https://github.com/hizeph/kubescope">View the Project on GitHub <small>hizeph/kubescope</small></a></p>
+
+
+
+
+
+      </header>
+      <section>
+
+      <h1 id="kubescope">Kubescope</h1>
+
+<p>Peek into your Kubernetes cluster to read data from configmaps, secrets, volumes, and environment variables.</p>
+
+<h2 id="motivation">Motivation</h2>
+
+<p>This is a learning app, to use all endpoints you’ll have to appropriately create, mount, and configure Kubernetes resources like ConfigMaps, Secrets, Volumes, Roles and RoleBindings, Service Accounts.</p>
+
+<ol>
+  <li><a href="/kubescope/exercises/exercises.html">Suggested exercises</a></li>
+</ol>
+
+<h2 id="usage">Usage</h2>
+
+<p>Available as a container image, <a href="https://github.com/cabernardi/kubescope/pkgs/container/kubescope">ghcr.io/cabernardi/kubescope</a>.</p>
+
+<h2 id="environment-variables">Environment Variables</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Default</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>USERNAME</td>
+      <td>-</td>
+      <td>Set it, along with “PASSWORD”, to enable Basic HTTP Authentication to all endpoints (except healthcheck)</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>PASSWORD</td>
+      <td>-</td>
+      <td>Set it, along with “USERNAME”, to enable Basic HTTP Authentication to all endpoints (except healthcheck)</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>DB_HOST</td>
+      <td>-</td>
+      <td>Postgres DB Host</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>DB_PORT</td>
+      <td>5432</td>
+      <td>Postgres DB Port</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>DB_USERNAME</td>
+      <td>-</td>
+      <td>Postgres DB Username</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>DB_PASSWORD</td>
+      <td>-</td>
+      <td>Postgres DB Password</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>DB_NAME</td>
+      <td>-</td>
+      <td>Postgres DB Database Name</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+
+
+      </section>
+      <footer>
+
+        <p>This project is maintained by <a href="https://github.com/hizeph">hizeph</a></p>
+
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/kubescope/assets/js/scale.fix.js"></script>
+  </body>
+</html>

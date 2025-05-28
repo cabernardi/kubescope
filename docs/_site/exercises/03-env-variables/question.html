@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>03 - Environment Variables | Kubescope</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="03 - Environment Variables" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes learning support tool" />
+<meta property="og:description" content="Kubernetes learning support tool" />
+<link rel="canonical" href="http://localhost:4000/kubescope/exercises/03-env-variables/question.html" />
+<meta property="og:url" content="http://localhost:4000/kubescope/exercises/03-env-variables/question.html" />
+<meta property="og:site_name" content="Kubescope" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="03 - Environment Variables" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Kubernetes learning support tool","headline":"03 - Environment Variables","url":"http://localhost:4000/kubescope/exercises/03-env-variables/question.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/kubescope/assets/css/style.css?v=da33ca0fafddc7608c5f6aa2ae3bda140e757113">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/kubescope/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://localhost:4000/kubescope/">Kubescope</a></h1>
+
+
+
+        <p>Kubernetes learning support tool</p>
+
+
+        <p class="view"><a href="https://github.com/hizeph/kubescope">View the Project on GitHub <small>hizeph/kubescope</small></a></p>
+
+
+
+
+
+      </header>
+      <section>
+
+      <h1 id="03---environment-variables">03 - Environment Variables</h1>
+
+<ol>
+  <li>Edit/re-create the <strong>Deployment</strong> from <a href="/kubescope/exercises/02-deployment/question.html">Question 2</a>, to add an <strong>env</strong> block to the kubescope <strong>container</strong> <a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/">[Ref]</a>. <em>Note: You can’t set deployment environment variables imperatively</em>
+    <ul>
+      <li>Add <code class="language-plaintext highlighter-rouge">USERNAME</code> (case sensitive) variable with a value of your choice</li>
+      <li>Add <code class="language-plaintext highlighter-rouge">PASSWORD</code> (case sensitive) variable with a value of your choice</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Port-forward</strong> the <strong>Deployment</strong> (or <strong>Service</strong>) port <strong>80</strong> to local port <strong>8000</strong> <a href="https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod">[Ref]</a></p>
+  </li>
+  <li>Access <a href="http://localhost:8000/v1/protected">http://localhost:8000/v1/protected</a>
+    <ul>
+      <li>Log in with the credentials you set up on step 1</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+<p><a href="./solution.md">Solution</a></p>
+
+
+      </section>
+      <footer>
+
+        <p>This project is maintained by <a href="https://github.com/hizeph">hizeph</a></p>
+
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/kubescope/assets/js/scale.fix.js"></script>
+  </body>
+</html>
