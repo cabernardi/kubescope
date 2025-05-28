@@ -1,6 +1,6 @@
 # 03 - Environment Variables
 
-1. Edit/re-create the **Deployment** from [Question 2](../02-deployment/question.md), to add an **env** block to the kubescope **container** [[Ref]](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/). _Note: You can't set deployment environment variables imperatively_
+1. Edit/re-create the **Deployment** from [Question 2](../02-deployment/), to add an **env** block to the kubescope **container** [[Ref]](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/). _Note: You can't set deployment environment variables imperatively_
     - Add `USERNAME` (case sensitive) variable with a value of your choice
     - Add `PASSWORD` (case sensitive) variable with a value of your choice
 

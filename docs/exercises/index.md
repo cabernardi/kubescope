@@ -8,9 +8,9 @@
 
 1. [Create Deployment with secret as environment variables](./04-secrets-as-env/)
 
-1. Create Sidecar, write to txt
+1. [Create InitContainer, write to shared volume](./05-sidecar-write/)
 
-1. Create InitContainer, write to txt
+1. Create Sidecar container, continuosly write to shared volume
 
 1. Create Postgres Deployment (before volumes are introduced), add connection in Kubescope
     1. Add data
