@@ -6,7 +6,7 @@ Peek into your Kubernetes cluster to read data from configmaps, secrets, volumes
 
 This is a learning app, to use all endpoints you'll have to appropriately create, mount, and configure Kubernetes resources like ConfigMaps, Secrets, Volumes, Roles and RoleBindings, Service Accounts.
 
-1. [Suggested exercises](./exercises/exercises.md)
+1. [Suggested exercises](./exercises/)
 
 ## Usage
 
