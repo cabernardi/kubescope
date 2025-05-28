@@ -21,7 +21,7 @@
 title: Kubescope
 email: cezar.a.bernardi@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Peek into your Kubernetes cluster to read data from configmaps, secrets, volumes, and environment variables.
+  Kubernetes learning support tool
 domain: cabernardi.github.io
 baseurl: /kubescope/ # the subpath of your site, e.g. /blog
 url: https://cabernardi.github.io # the base hostname & protocol for your site, e.g. http://example.com
