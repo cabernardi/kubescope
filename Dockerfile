@@ -12,4 +12,4 @@ COPY --chown=kubescope ./kubescope ./kubescope
 
 RUN poetry install --without dev
 
-CMD ["poetry", "run", "uvicorn", "kubescope.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "uvicorn", "kubescope.main:app", "--host", "0.0.0.0", "--port", "80"]
