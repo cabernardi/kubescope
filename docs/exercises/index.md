@@ -1,5 +1,16 @@
 # Kubescope Exercises
 
+## Pre-requisites
+
+- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- A running [minikube](https://minikube.sigs.k8s.io/docs/start/) cluster
+- A **Namespace** `kubescope` exists in the cluster
+```bash
+kubectl create namespace kubescope
+```
+
+## Exercises
+
 1. [Create Pod](./01-pod-local-access/)
 
 1. [Create Deployment](./02-deployment/)
