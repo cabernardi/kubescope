@@ -28,12 +28,11 @@ spec:
         ports:
         - containerPort: 80
         env:
-          - name: USERNAME
-            value: cabernardi
-          - name: PASSWORD
-            value: mypwd
+          - name: AMAZING
+            value: kubescope
+          - name: COOL
+            value: kubernetes
 ```
-_Note: You can change the values of USERNAME and PASSWORD to your preference_
 
 Then apply the manifest to the cluster:
 
@@ -51,3 +50,23 @@ kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope
 ```bash
 kubectl port-forward service/kubescope 8000:80 --namespace kubescope
 ```
+
+## 3
+
+**Terminal**
+
+```bash
+curl http://localhost:8000/v1/env/AMAZING
+curl http://localhost:8000/v1/env/COOL
+```
+
+**UI**
+
+1. Access [https://localhost:8000/docs](https://localhost:8000/docs)
+
+1. Expand the `GET /v1/env` entrypoint, and press "Try it"
+
+1. Input `AMAZING` or `COOL`, and execute the request.
+
+
+These calls should respond with `{"variable": "AMAZING", "value": "kubescope"}` and `{"variable": "COOL", "value": "kubernetes"}`, respectively.
