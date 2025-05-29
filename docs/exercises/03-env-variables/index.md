@@ -6,7 +6,7 @@
 1. **Port-forward** the **Deployment** (or **Service**) port **80** to local port **8000** [[Ref]](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod)
 
 1. Access [http://localhost:8000/docs](http://localhost:8000/docs)
-    1. Expand the `GET /v1/env` entrypoint, and press "Try it"
+    1. Expand the `GET /v1/env/{env}` entrypoint, and press "Try it"
     1. Input `AMAZING` and execute the request. This will read the environment variable `AMAZING` from inside the running `kubescope` container
 
 1. [Alternative] Do the request directly at [http://localhost:8000/v1/env/AMAZING](http://localhost:8000/v1/env/AMAZING), or from the terminal
