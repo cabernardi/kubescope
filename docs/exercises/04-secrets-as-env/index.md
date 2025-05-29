@@ -1,4 +1,4 @@
-# 03 - Environment Variables
+# 04 - Secret as Environment Variables
 
 1. Create a **Secret** of type **Opaque** named kubescope-credentials in **namespace** kubescope. The secret should contain two keys: `USERNAME` and `PASSWORD` (case sensitive), with values of your choice [[Ref]](https://kubernetes.io/docs/concepts/configuration/secret/#opaque-secrets)
 
