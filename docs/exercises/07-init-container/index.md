@@ -1,6 +1,6 @@
-# 05 - Init Containers
+# 06 - Init Containers
 
-1. Edit/re-create the **Deployment** from [Question 4](../04-secrets-as-env/), to add a **Init Container**. _Note: You can't do this imperatively_ [[Ref]](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
+1. Edit/re-create the Kubescope **Deployment** from a previous exercise, to add a **Init Container**. _Note: You can't do this imperatively_ [[Ref]](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
     - On the **Init Container**, use image `alpine:latest`, set the **command** to `["sh", "-c", "echo 'Hello from init container!' > /etc/init/hello-init.txt'"]`, and mount a **Volume** named **init-volume** to `/etc/init`, as **readOnly: false**.
     - On the `kubescope` container, mount the same **Volume**, to the same path, but as **readyOnly: true**.
 

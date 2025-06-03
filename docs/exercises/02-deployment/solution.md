@@ -2,12 +2,6 @@
 
 ## 1
 
-**Imperative**
-
-```bash
-kubectl create deployment kubescope --image ghcr.io/cabernardi/kubescope --port 80 --replicas 2 --namespace kubescope
-```
-
 **Declarative**
 
 Create a file named `deployment.yaml` with the following contents:
@@ -42,13 +36,13 @@ Then apply the manifest to the cluster:
 kubectl apply -f deployment.yaml
 ```
 
-## 2 [Optional]
-
 **Imperative**
 
 ```bash
-kubectl create service clusterip kubescope --tcp 80:80 --namespace kubescope
+kubectl create deployment kubescope --image ghcr.io/cabernardi/kubescope --port 80 --replicas 2 --namespace kubescope
 ```
+
+## 2 [Optional]
 
 **Declarative**
 
@@ -77,6 +71,12 @@ Then apply the manifest to the cluster:
 kubectl apply -f service.yaml
 ```
 
+**Imperative**
+
+```bash
+kubectl create service clusterip kubescope --tcp 80:80 --namespace kubescope
+```
+
 ### Notes
 
 The `selector` block on the **Service** must match the `labels` on the **Deployment** `spec.template.metadata`, which are the labels that are applied to the **Pods** managed by the **Deployment**
@@ -91,3 +91,7 @@ kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope
 ```bash
 kubectl port-forward service/kubescope 8000:80 --namespace kubescope
 ```
+
+## 4
+
+Access [http://localhost:8000/health](http://localhost:8000/health)

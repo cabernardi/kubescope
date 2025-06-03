@@ -2,6 +2,36 @@
 
 ## 1
 
+**Declarative**
+
+1. Create a `configmap.yaml` file with the encoded data generated on previously:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubescope-configmap
+  namespce: kubescope
+data:
+  INCREDIBLE: kubescope
+```
+
+Then apply the manifest to the cluster:
+
+```bash
+kubectl apply -f configmap.yaml
+```
+
+**Imperative**
+
+```bash
+kubectl create configmap kubescope-configmap --from-literal INCREDIBLE=kubescope -n kubescope
+```
+
+_Note: You can set any number of key-value pairs in the `data` block, or with the `--from-literal` flag_
+
+## 2
+
 Create/edit a file named `deployment.yaml` with the following contents:
 
 ```yaml
@@ -27,11 +57,9 @@ spec:
         name: kubescope
         ports:
         - containerPort: 80
-        env:
-          - name: AMAZING
-            value: kubescope
-          - name: COOL
-            value: kubernetes
+        envFrom:
+          - configMapRef:
+              name: kubescope-configmap
 ```
 
 Then apply the manifest to the cluster:
@@ -40,7 +68,7 @@ Then apply the manifest to the cluster:
 kubectl apply -f deployment.yaml
 ```
 
-## 2
+## 3
 
 ```bash
 kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope
@@ -51,13 +79,12 @@ kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope
 kubectl port-forward service/kubescope 8000:80 --namespace kubescope
 ```
 
-## 3
+## 4
 
 **Terminal**
 
 ```bash
-curl http://localhost:8000/v1/env/AMAZING
-curl http://localhost:8000/v1/env/COOL
+curl http://localhost:8000/v1/env/INCREDIBLE
 ```
 
 **UI**
@@ -66,7 +93,7 @@ curl http://localhost:8000/v1/env/COOL
 
 1. Expand the `GET /v1/env` endpoint, and press "Try it"
 
-1. Input `AMAZING` or `COOL`, and execute the request.
+1. Input `INCREDIBLE`, and execute the request.
 
 
-These calls should respond with `{"variable": "AMAZING", "value": "kubescope"}` and `{"variable": "COOL", "value": "kubernetes"}`, respectively.
+These calls should respond with `{"variable": "INCREDIBLE", "value": "kubescope"}`, respectively.
