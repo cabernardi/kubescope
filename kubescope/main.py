@@ -38,7 +38,6 @@ def get_env(env: str):
 
     Args:
         env (str): Environment variable name to read from
-        auth (Annotated[bool, Depends): Authentication dependency
 
     Raises:
         HTTPException: If the environment variable is not found
@@ -55,6 +54,15 @@ def get_env(env: str):
 
 @app.get("/v1/config/color", response_model=dict)
 def get_color_config():
+    """Read and return the content of the color configuration
+
+    Raises:
+        HTTPException: Unexpected error
+        HTTPException: Unexpected error reading the config file
+
+    Returns:
+        dict: Dict containing the color configuration from the config file
+    """
     try:
         data = {"color": config_file["general"]["color"]}
         return data
@@ -70,7 +78,6 @@ def get_color_config():
 @app.get("/v1/txt", response_model=str)
 def get_txt_file(
     path: Annotated[str, Query(description="TXT file path", regex=r"^\/.*\.(?:txt)$")],
-    auth: Annotated[bool, Depends(auth.authenticate)],
 ):
     """Read and return the content of a TXT file
 
@@ -107,21 +114,24 @@ def init_db_connection():
         raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail=str(e))
     except Exception as e:
         print(e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to initialize database")
 
 
 @app.post("/v1/db/add", response_model=db.Person)
 def add_to_db(name: str = Query(description="Name of the person to add")):
+    """Add a person to the database"""
     try:
         return db.add_person(name)
     except DatabaseNotConfigured as e:
         raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail=str(e))
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+        print(e)
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to connect to database")
 
 
 @app.get("/v1/db/get-all", response_model=List[db.Person])
 def get_from_db():
+    """Get all people from the database"""
     try:
         people = db.get_people()
         print(people)
@@ -130,4 +140,4 @@ def get_from_db():
         raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail=str(e))
     except Exception as e:
         print(e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to connect to database")
