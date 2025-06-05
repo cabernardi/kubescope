@@ -38,9 +38,6 @@ spec:
         name: kubescope
         ports:
         - containerPort: 80
-        envFrom:
-          - secretRef:
-              name: kubescope-credentials
         volumeMounts:
           - name: init-volume
             mountPath: /etc/init
@@ -78,7 +75,7 @@ kubectl port-forward service/kubescope 8000:80 --namespace kubescope
 **curl**
 
 ```bash
-curl -u cabernardi:mypwd http://localhost:8000/v1/txt?path=/etc/init/hello-init.txt
+curl http://localhost:8000/v1/txt?path=/etc/init/hello-init.txt
 ```
 
 The output should be `"Hello from init container!\n"`

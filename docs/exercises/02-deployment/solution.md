@@ -77,6 +77,12 @@ kubectl apply -f service.yaml
 kubectl create service clusterip kubescope --tcp 80:80 --namespace kubescope
 ```
 
+OR
+
+```bash
+kubectl expose deployment kubescope --port 80 --name kubescope --namespace kubescope
+```
+
 ### Notes
 
 The `selector` block on the **Service** must match the `labels` on the **Deployment** `spec.template.metadata`, which are the labels that are applied to the **Pods** managed by the **Deployment**

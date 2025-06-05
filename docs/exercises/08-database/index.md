@@ -24,3 +24,18 @@
     1. Expand the `GET /v1/db/get-all` endpoint, press "Try it", and execute the request
 
 The `GET /v1/db/get-all` endpoint should respond with a list of names that you added using `POST /v1/db/add`. This means that the Kubescope **Pods** are able to reach the Postgres **Pod**, through the Postgres **Service**, to read and write data to the postgres database.
+
+Now, let's validate the lack of data persistency on the database:
+
+1. Restart the `postgres` **Deployment**. A couple ways to do it:
+    - `kubectl rollout restart deployment/postgres -n kubescope`
+    - If you're using an interface for Kubernetes, you can simply delete the `postgres` running **Pod**, a new one will automatically be allocated
+
+1. Access [http://localhost:8000/docs](http://localhost:8000/docs)
+    1. Expand the `POST /v1/db/init` endpoint, press "Try it", and execute the request (if it fails, wait a few seconds and try again, the `postgres` **Pod** might not be ready to receive connections yet)
+    1. Expand the `GET /v1/db/get-all` endpoint, press "Try it", and execute the request.
+
+The `GET /v1/db/get-all` endpoint should now respond with an empty list. This means that the Postgres **Pod** data is ephemeral, and all that is writen into it will be gone when the **Pod** is replaced by a new one.
+
+---
+[Solution](./solution.md)
