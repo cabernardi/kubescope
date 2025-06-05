@@ -25,9 +25,6 @@ kubectl create namespace kubescope
 
 1. [Create InitContainer, write to shared volume](./07-init-container/)
 
-1. Create Postgres Deployment (before volumes are introduced), add connection in Kubescope
-    1. Add data
-    1. Restart deployment
-    1. Check data
+1. [Create Postgres Deployment and Service, and connect Pods](./08-database/)
 
-1. Add volume o Postgres Deployment
+1. [Add data persistency to Pod](./09-database-persistence/)
