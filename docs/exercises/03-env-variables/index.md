@@ -1,6 +1,6 @@
 # 03 - Environment Variables
 
-1. Edit/re-create the **Deployment** from [Question 2](../02-deployment/), to add an **env** block to the kubescope **container** [[Ref]](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/). _Note: You can't set deployment environment variables imperatively_
+1. Edit/re-create the Kubescope **Deployment** from [Question 2](../02-deployment/), to add an **env** block to the kubescope **container** [[Ref]](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/). _Note: You can't set deployment environment variables imperatively_
     - Add one or more variables, e.g. `AMAZING`, with a value of your choice, like `kubescope_is_amazing`
 
 1. **Port-forward** the **Deployment** (or **Service**) port **80** to local port **8000** [[Ref]](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod)

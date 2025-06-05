@@ -1,11 +1,11 @@
 import os
 from typing import Annotated, List
 
-import yaml
 from fastapi import Depends, FastAPI, HTTPException, Query, status
 
 import kubescope.auth as auth
 import kubescope.db.database as db
+from kubescope.config import config_file
 from kubescope.exceptions import DatabaseNotConfigured
 
 app = FastAPI()
@@ -33,12 +33,11 @@ def protected_route(auth: Annotated[bool, Depends(auth.authenticate)]):
 
 
 @app.get("/v1/env/{env}")
-def get_env(env: str, auth: Annotated[bool, Depends(auth.authenticate)]):
+def get_env(env: str):
     """Return the value of an environment variable set in the container
 
     Args:
         env (str): Environment variable name to read from
-        auth (Annotated[bool, Depends): Authentication dependency
 
     Raises:
         HTTPException: If the environment variable is not found
@@ -53,40 +52,32 @@ def get_env(env: str, auth: Annotated[bool, Depends(auth.authenticate)]):
     return {"variable": env, "value": os.getenv(env, None)}
 
 
-@app.get("/v1/yaml", response_model=dict)
-def get_yaml(
-    path: Annotated[str, Query(description="YAML file path", regex=r"^\/.*\.(?:yaml|yml)$")],
-    auth: Annotated[bool, Depends(auth.authenticate)],
-):
-    """Read and return the content of a YAML file
-
-    Args:
-        auth (Annotated[bool, Depends): Authentication dependency
-        path (Annotated[str, Query): Path to the YAML file to read
+@app.get("/v1/config/color", response_model=dict)
+def get_color_config():
+    """Read and return the content of the color configuration
 
     Raises:
-        HTTPException: File is not found on the container
-        HTTPException: Error reading the file
+        HTTPException: Unexpected error
+        HTTPException: Unexpected error reading the config file
 
     Returns:
-        dict: Content of the YAML file
+        dict: Dict containing the color configuration from the config file
     """
-    if not os.path.exists(path):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"File {path} not found")
-
     try:
-        with open(path, "r") as f:
-            data = yaml.safe_load(f)
-
+        data = {"color": config_file["general"]["color"]}
         return data
+    except KeyError:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Configuration key 'general.color' not found in config file"
+        )
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
 
 @app.get("/v1/txt", response_model=str)
 def get_txt_file(
     path: Annotated[str, Query(description="TXT file path", regex=r"^\/.*\.(?:txt)$")],
-    auth: Annotated[bool, Depends(auth.authenticate)],
 ):
     """Read and return the content of a TXT file
 
@@ -114,7 +105,7 @@ def get_txt_file(
 
 
 @app.post("/v1/db/init", response_model=dict)
-def init_db_connection(auth: Annotated[bool, Depends(auth.authenticate)]):
+def init_db_connection():
     """Initialize the database, if it isn't"""
     try:
         db.create_db()
@@ -123,23 +114,24 @@ def init_db_connection(auth: Annotated[bool, Depends(auth.authenticate)]):
         raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail=str(e))
     except Exception as e:
         print(e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to initialize database")
 
 
 @app.post("/v1/db/add", response_model=db.Person)
-def add_to_db(
-    auth: Annotated[bool, Depends(auth.authenticate)], name: str = Query(description="Name of the person to add")
-):
+def add_to_db(name: str = Query(description="Name of the person to add")):
+    """Add a person to the database"""
     try:
         return db.add_person(name)
     except DatabaseNotConfigured as e:
         raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail=str(e))
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+        print(e)
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to connect to database")
 
 
 @app.get("/v1/db/get-all", response_model=List[db.Person])
-def get_from_db(auth: Annotated[bool, Depends(auth.authenticate)]):
+def get_from_db():
+    """Get all people from the database"""
     try:
         people = db.get_people()
         print(people)
@@ -148,4 +140,4 @@ def get_from_db(auth: Annotated[bool, Depends(auth.authenticate)]):
         raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail=str(e))
     except Exception as e:
         print(e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to connect to database")

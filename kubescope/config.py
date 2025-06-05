@@ -1,3 +1,4 @@
+import configparser
 import os
 
 # HTTP Basic Auth
@@ -11,3 +12,6 @@ DB_PASSWORD = os.environ.get("DB_PASSWORD")
 DB_NAME = os.environ.get("DB_NAME")
 DB_PORT = os.environ.get("DB_PORT", "5432")
 DB_DRIVER_NAME = "postgresql+psycopg2"
+
+config_file = configparser.ConfigParser()
+config_file.read(["kubescope/config/default.ini", "/etc/kubescope/config.ini"])
