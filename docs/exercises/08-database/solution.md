@@ -108,13 +108,13 @@ kubectl apply -f postgres-service.yaml
 **Imperative**
 
 ```bash
-kubectl create service clusterip postgres --tcp 5432:5432 --namespace kubescope
+kubectl create service clusterip postgres --tcp 5432:5432 --namespace kubescope-ns
 ```
 
 OR
 
 ```bash
-kubectl expose deployment postgres --port 5432 --name postgres --namespace kubescope
+kubectl expose deployment postgres --port 5432 --name postgres --namespace kubescope-ns
 ```
 
 ## 4
@@ -174,7 +174,7 @@ metadata:
   labels:
     app: kubescope
   name: kubescope
-  namespace: kubescope
+  namespace: kubescope-ns
 spec:
   replicas: 2
   selector:
@@ -204,10 +204,10 @@ kubectl apply -f deployment.yaml
 ## 6
 
 ```bash
-kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope
+kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope-ns
 ```
 
 **If the Service was created**
 ```bash
-kubectl port-forward service/kubescope 8000:80 --namespace kubescope
+kubectl port-forward service/kubescope 8000:80 --namespace kubescope-ns
 ```

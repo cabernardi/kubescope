@@ -1,13 +1,13 @@
 # 08 - Inter-pod communication
 
-1. Create a **Secret** `postgres-secret`, in **Namespace** kubescope, with keys `POSTGRES_DB`, `POSTGRES_USER`, and `POSTGRES_PASSWORD`. The values can be set up to your preference.
+1. Create a **Secret** `postgres-secret`, in **Namespace** kubescope-ns, with keys `POSTGRES_DB`, `POSTGRES_USER`, and `POSTGRES_PASSWORD`. The values can be set up to your preference.
     - Remember to encode the values as base64
 
-1. Create a **Deployment** named `postgres`, with **1** replica, listening on port **5432**, using image `postgres:17-alpine`, on **Namespace** kubescope. Mount the `postgres-secret` **Secret** from the previous step as environment variables.
+1. Create a **Deployment** named `postgres`, with **1** replica, listening on port **5432**, using image `postgres:17-alpine`, on **Namespace** kubescope-ns. Mount the `postgres-secret` **Secret** from the previous step as environment variables.
 
-1. Create a **Service** named `postgres` of type **ClusterIP**, on **Namespace** kubescope [[Ref]](https://kubernetes.io/docs/concepts/services-networking/service/)
+1. Create a **Service** named `postgres` of type **ClusterIP**, on **Namespace** kubescope-ns [[Ref]](https://kubernetes.io/docs/concepts/services-networking/service/)
 
-1. Create a **Secret** `kubescope-db-secret`, in **Namespace** kubescope, with keys `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, and `DB_NAME`.
+1. Create a **Secret** `kubescope-db-secret`, in **Namespace** kubescope-ns, with keys `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, and `DB_NAME`.
     - The value of `DB_USERNAME` must match the value of `POSTGRES_USER` from the first step
     - The value of `DB_PASSWORD` must match the value of `POSTGRES_PASSWORD` from the first step
     - The value of `DB_NAME` must match the value of `POSTGRES_DB` from the first step

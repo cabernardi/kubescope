@@ -5,7 +5,7 @@
 **Imperative**
 
 ```bash
-kubectl run kubescope --image ghcr.io/cabernardi/kubescope --port 80 --namespace kubescope
+kubectl run kubescope --image ghcr.io/cabernardi/kubescope --port 80 --namespace kubescope-ns
 ```
 
 **Declarative**
@@ -17,7 +17,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: kubescope
-  namespace: kubescope
+  namespace: kubescope-ns
 spec:
   containers:
   - image: ghcr.io/cabernardi/kubescope
@@ -34,5 +34,5 @@ kubectl apply -f pod.yaml
 ## 2
 
 ```bash
-kubectl port-forward pod/kubescope 8000:80 --namespace kubescope
+kubectl port-forward pod/kubescope 8000:80 --namespace kubescope-ns
 ```

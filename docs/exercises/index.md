@@ -4,9 +4,9 @@
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - A running [minikube](https://minikube.sigs.k8s.io/docs/start/) cluster
-- A **Namespace** `kubescope` exists in the cluster
+- A **Namespace** `kubescope-ns` exists in the cluster
 ```bash
-kubectl create namespace kubescope
+kubectl create namespace kubescope-ns
 ```
 
 ## Exercises

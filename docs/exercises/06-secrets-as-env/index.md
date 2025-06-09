@@ -1,6 +1,6 @@
 # 06 - Secret as Environment Variables
 
-1. Create a **Secret** of type **Opaque** named kubescope-credentials in **Namespace** kubescope. The secret should contain two keys: `USERNAME` and `PASSWORD` (case sensitive), with values of your choice [[Ref]](https://kubernetes.io/docs/concepts/configuration/secret/#opaque-secrets)
+1. Create a **Secret** of type **Opaque** named kubescope-credentials in **Namespace** kubescope-ns. The secret should contain two keys: `USERNAME` and `PASSWORD` (case sensitive), with values of your choice [[Ref]](https://kubernetes.io/docs/concepts/configuration/secret/#opaque-secrets)
 
 1. Edit/re-create the Kubescope **Deployment** from a previous exercise, to add an **envFrom** block to the kubescope **container**. _Note: You can't mount secrets in the deployment imperatively_
     - The **envFrom** block should read from the **Secret** created in step 1 [[Ref]](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/#configure-all-key-value-pairs-in-a-secret-as-container-environment-variables)

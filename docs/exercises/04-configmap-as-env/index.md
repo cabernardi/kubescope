@@ -1,6 +1,6 @@
 # 04 - ConfigMap as Environment Variables
 
-1. Create a **ConfigMap** named kubescope-config in **Namespace** kubescope. The ConfigMap should contain at least one key-value pair, e.g. `INCREDIBLE: kubescope`, under the `data` block [[Ref]](https://kubernetes.io/docs/concepts/configuration/configmap/#using-configmaps-as-environment-variables)
+1. Create a **ConfigMap** named kubescope-config in **Namespace** kubescope-ns. The ConfigMap should contain at least one key-value pair, e.g. `INCREDIBLE: kubescope`, under the `data` block [[Ref]](https://kubernetes.io/docs/concepts/configuration/configmap/#using-configmaps-as-environment-variables)
 
 1. Edit/re-create the Kubescope **Deployment** from a previous exercise, to add an **envFrom** block to the kubescope **container**. _Note: You can't mount ConfigMaps in the deployment imperatively_
     - The **envFrom** block should read from the **ConfigMap** created in step 1 [[Ref]](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables)

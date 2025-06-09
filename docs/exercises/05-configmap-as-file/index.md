@@ -21,7 +21,7 @@ With a running Kubescope deployment, from any previous exercise, with a local po
     color = ORANGE
     ```
 
-1. Create a **ConfigMap** named kubescope-config in **Namespace** kubescope, based on the INI file from the previous step. [[Ref]](https://kubernetes.io/docs/concepts/configuration/configmap/#using-configmaps-as-environment-variables)
+1. Create a **ConfigMap** named kubescope-config in **Namespace** kubescope-ns, based on the INI file from the previous step. [[Ref]](https://kubernetes.io/docs/concepts/configuration/configmap/#using-configmaps-as-environment-variables)
     - _Tip: use `--from-file`_
 
 1. Edit/re-create the Kubescope **Deployment** from any previous exercise, mounting the kubescope-config **ConfigMap** as a volume, under the `/etc/kubeconfig`. [[Ref]](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#add-configmap-data-to-a-volume)

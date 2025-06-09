@@ -13,7 +13,7 @@ metadata:
   labels:
     app: kubescope
   name: kubescope
-  namespace: kubescope
+  namespace: kubescope-ns
 spec:
   replicas: 2
   selector:
@@ -39,7 +39,7 @@ kubectl apply -f deployment.yaml
 **Imperative**
 
 ```bash
-kubectl create deployment kubescope --image ghcr.io/cabernardi/kubescope --port 80 --replicas 2 --namespace kubescope
+kubectl create deployment kubescope --image ghcr.io/cabernardi/kubescope --port 80 --replicas 2 --namespace kubescope-ns
 ```
 
 ## 2 [Optional]
@@ -54,7 +54,7 @@ metadata:
   labels:
     app: kubescope
   name: kubescope
-  namespace: kubescope
+  namespace: kubescope-ns
 spec:
   ports:
   - name: 80-80
@@ -74,13 +74,13 @@ kubectl apply -f service.yaml
 **Imperative**
 
 ```bash
-kubectl create service clusterip kubescope --tcp 80:80 --namespace kubescope
+kubectl create service clusterip kubescope --tcp 80:80 --namespace kubescope-ns
 ```
 
 OR
 
 ```bash
-kubectl expose deployment kubescope --port 80 --name kubescope --namespace kubescope
+kubectl expose deployment kubescope --port 80 --name kubescope --namespace kubescope-ns
 ```
 
 ### Notes
@@ -90,12 +90,12 @@ The `selector` block on the **Service** must match the `labels` on the **Deploym
 ## 3
 
 ```bash
-kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope
+kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope-ns
 ```
 
 **If the Service was created**
 ```bash
-kubectl port-forward service/kubescope 8000:80 --namespace kubescope
+kubectl port-forward service/kubescope 8000:80 --namespace kubescope-ns
 ```
 
 ## 4

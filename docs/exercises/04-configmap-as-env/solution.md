@@ -41,7 +41,7 @@ metadata:
   labels:
     app: kubescope
   name: kubescope
-  namespace: kubescope
+  namespace: kubescope-ns
 spec:
   replicas: 2
   selector:
@@ -71,12 +71,12 @@ kubectl apply -f deployment.yaml
 ## 3
 
 ```bash
-kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope
+kubectl port-forward deployment/kubescope 8000:80 --namespace kubescope-ns
 ```
 
 **If the Service was created**
 ```bash
-kubectl port-forward service/kubescope 8000:80 --namespace kubescope
+kubectl port-forward service/kubescope 8000:80 --namespace kubescope-ns
 ```
 
 ## 4
